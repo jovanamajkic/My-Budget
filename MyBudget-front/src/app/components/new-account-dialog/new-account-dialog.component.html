@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>New Account</h1>
+<mat-dialog-content>
+    <form [formGroup]="form">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput required formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Currency</mat-label>
+            <input type="text" matInput [formControl]="currencyControl" [matAutocomplete]="auto">
+            <mat-icon matSuffix>arrow_drop_down</mat-icon>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onCurrencyChange($event)">
+                <mat-option *ngFor="let currency of filteredCurrencies | async" [value]="currency.key"
+                    [matTooltip]="currency.name">
+                    {{ currency.key }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Balance</mat-label>
+            <input matInput type="number" required formControlName="balance" step="0.01">
+            <span matSuffix>{{ selectedCurrency }}</span>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button class="dialog-btn" (click)="createAccount()">Create Account</button>
+</mat-dialog-actions>

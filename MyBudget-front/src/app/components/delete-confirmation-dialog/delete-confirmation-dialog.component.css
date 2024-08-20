@@ -1,0 +1,9 @@
+.dialog-btn {
+    background-color: rgb(41, 86, 158, 1);
+    color: white !important;
+}
+
+.dialog-actions {
+    width: 100%;
+    justify-content: flex-end;
+}

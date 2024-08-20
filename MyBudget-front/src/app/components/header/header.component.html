@@ -1,0 +1,14 @@
+<mat-toolbar class="toolbar">
+    <span class="title">My Bugdet</span>
+    <div>
+        <a mat-button [ngClass]="{'active': isActive === '/accounts'}" (click)="setActive('/accounts')">
+            Accounts
+        </a>
+        <a mat-button [ngClass]="{'active': isActive === '/transactions'}" (click)="setActive('/transactions')">
+            Transactions
+        </a>
+        <a mat-button [ngClass]="{'active': isActive === '/settings'}" (click)="setActive('/settings')">
+            Settings
+        </a>
+    </div>
+</mat-toolbar>

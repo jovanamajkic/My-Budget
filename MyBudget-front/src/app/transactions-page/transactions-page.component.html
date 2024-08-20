@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="list">
+        <mat-list>
+            <mat-list-item class="list-item" *ngFor="let transaction of filteredTransactions">
+                <div class="item">
+                    <div class="left">
+                        {{ transaction.description }}
+                        <div class="line">{{ transaction.account.name }}</div>
+                    </div>
+                    <div class="right">
+                        {{ calculateAmount(transaction) }}
+                        <div class="line" *ngIf="transaction.currency!==defaultCurrency">
+                            {{ transaction.amount }} {{ transaction.currency }}
+                        </div>
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+
+    </div>
+    <div class="filter">
+        <mat-form-field>
+            <mat-label>Choose account</mat-label>
+            <mat-select (selectionChange)="onAccountChange($event)">
+                <mat-option value="all">All</mat-option>
+                <mat-option *ngFor="let account of accounts" [value]="account.id">{{ account.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<app-footer />

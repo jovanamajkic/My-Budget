@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>New Transaction</h1>
+<mat-dialog-content>
+    <form [formGroup]="form">
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <input matInput required formControlName="description">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Transaction type</mat-label>
+            <mat-select required formControlName="type">
+                <mat-option value="expense">Expense</mat-option>
+                <mat-option value="income">Income</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Account</mat-label>
+                <mat-select required formControlName="account">
+                    <mat-option *ngFor="let account of accounts" [value]="account.id">{{ account.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Amount</mat-label>
+                <input matInput type="number" required formControlName="amount" step="0.01">
+                <span matSuffix>{{ defaultCurrency }}</span>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button class="dialog-btn" (click)="createTransaction()">Create Transaction</button>
+</mat-dialog-actions>

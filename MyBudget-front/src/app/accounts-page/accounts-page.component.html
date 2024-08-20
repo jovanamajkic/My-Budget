@@ -1,0 +1,17 @@
+<div class="list">
+    <mat-list>
+        <mat-list-item class="list-item" *ngFor="let account of accounts">
+            <div class="item">
+                <div>{{ account.name }}</div>
+                <div class="right">
+                    {{ calculateBalance(account) }}
+                    <div class="line" *ngIf="account.currency!==defaultCurrency">{{ account.balance }} {{ account.currency }}</div>
+                </div>
+            </div>
+        </mat-list-item>
+    </mat-list>
+    <div class="button-container">
+        <button mat-raised-button (click)="openDialog()">New Account</button>
+    </div>
+</div>
+<app-footer />

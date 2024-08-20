@@ -1,0 +1,7 @@
+.content {
+    width: 100vw;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}

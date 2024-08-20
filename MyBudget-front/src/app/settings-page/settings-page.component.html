@@ -1,0 +1,31 @@
+<div class="list">
+    <mat-list>
+        <mat-list-item class="list-item">
+            <div class="item">
+                <div>Default currency</div>
+                <mat-form-field>
+                    <input type="text" matInput [formControl]="currencyControl" [matAutocomplete]="auto">
+                    <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onCurrencyChange($event)">
+                        <mat-option *ngFor="let currency of filteredCurrencies | async" [value]="currency.key"
+                            [matTooltip]="currency.name">
+                            {{ currency.key }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        </mat-list-item>
+        <mat-list-item class="list-item">
+            <div>
+                <button mat-button class="delete-btn" (click)="deleteAllData()">Delete all data</button>
+            </div>
+        </mat-list-item>
+        <mat-list-item class="list-item">
+            <div class="item">
+                <div>Exchange rate updated</div>
+                <div>{{ exchangeRateDate }}</div>
+            </div>
+        </mat-list-item>
+    </mat-list>
+</div>
+<footer>Copyright "The Client" 2024</footer>
