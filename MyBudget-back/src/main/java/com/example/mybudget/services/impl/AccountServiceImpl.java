@@ -38,14 +38,15 @@ public class AccountServiceImpl implements AccountService {
             for (AccountEntity account : accounts) {
                 accountRepository.save(account);
 
-                if (account.getTransactions() != null && !account.getTransactions().isEmpty()) {
-                    for (TransactionEntity transaction : account.getTransactions()) {
+                List<TransactionEntity> transactions = account.getTransactions();
+                if (transactions != null && !transactions.isEmpty()) {
+                    transactions.forEach(transaction -> {
                         transaction.setAccount(account);
-                        transaction.setAmount(transaction.getAmount());
-                        if (transaction.getCurrency() == null)
+                        if (transaction.getCurrency() == null) {
                             transaction.setCurrency(account.getCurrency());
-                        transactionRepository.save(transaction);
-                    }
+                        }
+                    });
+                    transactionRepository.saveAll(transactions);
                 }
             }
         }

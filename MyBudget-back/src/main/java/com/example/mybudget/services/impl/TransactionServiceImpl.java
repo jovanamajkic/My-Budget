@@ -33,6 +33,10 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Transaction create(TransactionRequest request) {
         TransactionEntity transaction = modelMapper.map(request, TransactionEntity.class);
+        if (transaction == null) {
+            throw new IllegalStateException("Transaction mapping failed.");
+        }
+
         AccountEntity account = accountRepository.findById(request.getAccountId())
                 .orElseThrow(() -> new IllegalArgumentException("Account not found for id: " + request.getAccountId()));
 
